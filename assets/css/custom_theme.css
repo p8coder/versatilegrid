@@ -1,0 +1,102 @@
+/*
+	CUSTOM THEME
+	
+	theme name: daylight
+	
+	You need to prefix the theme name with '.vg' . This prefix is only needed for css code, you can
+	use it without this in the grid option (theme).
+	
+	For this example css class will be : .vg-daylight
+	
+	-------------------------------------
+	How To Change Colors:
+	-------------------------------------
+	
+	You can get this done easily doing a search & replace 
+	to your new colors in the following steps:
+
+	
+		- Two colors for grandient in the grid header (Top & Bottom). Darkest color will be the border color around all grid.
+			For this example darkest color is 3EA1BC, and lighter color is 6EBDD3.
+		
+		- One color for toolbar & footer background
+			In this example is: AADFEF
+			
+		- Header buttons
+			Change only bottom color:CBEDFC
+			
+		- Action icons in rows (.vg-icons )
+			Another css gradient, feel free to change this to looks how yo want.
+*/
+
+/*daylight*/
+.vg-daylight .vg-header{
+	background-color: #3EA1BC;
+	background-image: -moz-linear-gradient(top, #3EA1BC, #6EBDD3);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#3EA1BC), to(#6EBDD3));
+	background-image: -webkit-linear-gradient(top, #3EA1BC, #6EBDD3);
+	background-image: -o-linear-gradient(top, #3EA1BC, #6EBDD3);
+	background-image: linear-gradient(to bottom, #3EA1BC, #6EBDD3);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3EA1BC', endColorstr='#6EBDD3', GradientType=0);
+	color:#FFFFFF ;	
+	border: 1px solid #3EA1BC;
+}
+.vg-daylight .vg-toolbar{background: #AADFEF; border-bottom: 1px solid #3EA1BC; border-left: 1px solid #3EA1BC;	border-right: 1px solid #3EA1BC;}
+.vg-daylight .vg-toolbar a{
+	color:#0E679D;
+	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+	background-color: #CBEDFC;
+	background-image: -moz-linear-gradient(top, #ffffff, #CBEDFC);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#CBEDFC));
+	background-image: -webkit-linear-gradient(top, #ffffff, #CBEDFC);
+	background-image: -o-linear-gradient(top, #ffffff, #CBEDFC);
+	background-image: linear-gradient(to bottom, #ffffff, #CBEDFC);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#CBEDFC', GradientType=0);
+	border-color:#82BAE3 #82BAE3 #589AC9;
+}
+.vg-daylight .vg-icons a:hover{
+	color:#5D9DE0;
+	background:#FDE389;
+	background-image: -moz-linear-gradient(top, #F5F8FB, #B4D2F2);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#F5F8FB), to(#B4D2F2));
+	background-image: -webkit-linear-gradient(top, #F5F8FB, #B4D2F2);
+	background-image: -o-linear-gradient(top, #F5F8FB, #B4D2F2);
+	background-image: linear-gradient(to bottom, #F5F8FB, #B4D2F2);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F5F8FB', endColorstr='#B4D2F2', GradientType=0);	
+	border:1px solid #97B7F7;
+}
+.vg-daylight .vg-footer{background:#AADFEF; border-right: 1px solid #3EA1BC; border-left: 1px solid #3EA1BC; border-bottom: 1px solid #3EA1BC;}
+.vg-daylight .vg-footer input, .vg-daylight .vg-footer select{border: 1px solid #3EA1BC}
+.vg-daylight .vg-footer .vg-sep span{border-left:1px solid #3EA1BC}
+.vg-daylight .vg-footer a.vg-active:hover{
+	color:#FFFFFF;
+	background:#5D9DE0;
+	background-image: -moz-linear-gradient(top, #83BAE7, #5D9DE0);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#83BAE7), to(#5D9DE0));
+	background-image: -webkit-linear-gradient(top, #83BAE7, #5D9DE0);
+	background-image: -o-linear-gradient(top, #83BAE7, #5D9DE0);
+	background-image: linear-gradient(to bottom, #83BAE7, #5D9DE0);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#83BAE7', endColorstr='#5D9DE0', GradientType=0);	
+	border:1px solid #5D9DE0;
+}
+.vg-daylight tr{ border-right: 1px solid #3EA1BC; }
+.vg-daylight tr:last-child{ border-bottom: 1px solid #3EA1BC;}
+.vg-daylight tr td:first-child, .vg-daylight tr th:first-child{	border-left: 1px solid #3EA1BC; }
+.vg-daylight td {border-top: 1px solid #BAD4E4;}
+.vg-daylight td, .vg-daylight th{ border-left: 1px solid #BAD4E4;	}
+.vg-daylight .vg-d-titles, .vg-daylight .vg-m-title {background:#AADFEF;}
+
+
+
+/*Theme Responsive Rule*/
+@media (max-width: 767px) {
+	.vg-daylight td{ border-right: 1px solid #BAD4E4;}
+	.vg-daylight tr td:first-child, .vg-gray tr th:first-child{border-left: 1px solid #BAD4E4;}
+	.vg-daylight tr td:last-child{border-bottom: 1px solid #BAD4E4;}
+	.vg-daylight .vg-footer{border-top: 1px solid #3EA1BC;}
+}
+
+

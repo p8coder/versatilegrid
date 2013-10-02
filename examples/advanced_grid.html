@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta charset="utf-8">
+    <title>Versatile Grid - Advanced Grid</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../assets/css/prettify.css" rel="stylesheet">
+    <link href="../versatileGrid.css" rel="stylesheet">
+  </head> 
+  <body>
+  	<div class="container">
+		<h2>Versatile Grid - More Features</h2>
+		<div class="row-fluid ">
+			Here is a grid with more features.
+		</div> 		
+		<div class="row-fluid ">&nbsp;</div> 
+		<div class="row-fluid " id="msgBox"></div>
+		
+		
+		<div class="row-fluid "><br></div>			
+			<div >
+				<table class="table" id="stable">
+					<thead>
+						<tr >
+							<th >Id</th>
+							<th >First name</th>
+							<th >Last name</th>
+							<th >Email</th> 
+							<th >Phone</th>
+						</tr>		
+					</thead>
+					<tbody></tbody>
+				</table>
+				<br>	
+				
+				<br><h4>Javascript Code</h4>
+<pre class="prettyprint linenums">
+$(function() {
+	$("#stable").versatileGrid({
+		title : 'Contacts',
+		colswidth : [40],
+		url : "data_adv.php",
+		defaultLimit:5,
+		limits:[5,15,20,30],
+		theme:'blue',
+		checkbox:true,
+		toolbar : [
+			{type:'button', name:'Activate', icon:'icon-ok', click:activateUsers},
+			{type:'button', name:'Add New', icon:'icon-plus', click:addNew}
+		]
+	});	
+});
+</pre>				
+			</div>
+		</div>
+  	</div>
+	
+	<div id="activeModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 >Selected Rows</h3>
+	  </div>
+	  <div class="modal-body">
+		<p><div class="alert alert-info">You can do any kind of actions using Ajax and posting selected row's id.</div></p>
+		<p><b id="rowStd"></b> rows selected</p>
+		<p><span id="rowIds"></span></p>
+	  </div>
+	  <div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+	  </div>
+	</div>
+	
+	<div id="addNewModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 >Add New Contact</h3>
+	  </div>
+	  <div class="modal-body">
+		<form class="form-horizontal">
+		  <div class="control-group">
+			<label class="control-label" for="fname">First Name</label>
+			<div class="controls">
+			  <input type="text" id="fname" placeholder="First Name">
+			</div>
+		  </div>
+		  <div class="control-group">
+			<label class="control-label" for="lname">Last Name</label>
+			<div class="controls">
+			  <input type="text" id="lname" placeholder="Last Name">
+			</div>
+		  </div>
+		  <div class="control-group">
+			<label class="control-label" for="email">Email</label>
+			<div class="controls">
+			  <input type="text" id="email" placeholder="Email">
+			</div>
+		  </div>
+		  <div class="control-group">
+			<label class="control-label" for="phone">Phone</label>
+			<div class="controls">
+			  <input type="text" id="phone" placeholder="phone">
+			</div>
+		  </div>
+		</form>
+	  </div>
+	  <div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+		<button class="btn btn-success" id="saveNow">Save</button>
+	  </div>
+	</div>
+
+	<div id="noModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="noMoHeader">Action Row</h3>
+	  </div>
+	  <div class="modal-body">
+		<p><div class="alert alert-info">This feature was disabled for demo. 
+			You can send the id via Ajax to delete row and after refresh the grid using $("#selector").versatilGrid('refreshGrid')</div></p>
+		<p>&nbsp;</p>
+		<p><span id="noMoRowIds"></span></p>
+	  </div>
+	  <div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+	  </div>
+	</div>
+	
+	<script type="text/javascript" src="../assets/js/jquery-1.10.1.min.js"></script>
+	<script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../assets/js/prettify.js"></script>
+	<script type="text/javascript" src="../versatileGrid.js"></script>
+	
+	<script>
+		$(function() {
+			$("#stable").versatileGrid({
+				title : 'Contacts',
+				colswidth : [40],
+				url : "data_advaaaaa.php",
+				defaultLimit:5,
+				limits:[5,15,20,30],
+				theme:'blue',
+				checkbox:true,
+				toolbar : [{type:'button', name:'Activate', icon:'icon-ok', click:activateUsers},
+						   {type:'button', name:'Add New', icon:'icon-plus', click:addNew}]
+			});		
+			$("#saveNow").on("click",sendNew);
+			prettyPrint();
+		});
+
+		function activateUsers(){
+			
+			var selectedRow = $("#stable").versatileGrid("getSelectedRows");
+			$("#rowStd").html(selectedRow.length);
+			
+			if(selectedRow.length > 0){
+				var ids = selectedRow[0];
+				$.each(selectedRow, function(index,value) {                    
+					ids += index > 0 ? ", "+value : "";
+				});
+				$("#rowIds").html("Row IDs: " + ids);
+			}else{
+				$("#rowIds").html("");
+			}
+			
+			$("#activeModal").modal();
+		}	
+
+		function addNew(){
+			$("#addNewModal").modal();
+		}
+		
+		function sendNew(){
+		
+			var fname = $("#fname").val();
+			var lname = $("#lname").val();
+			var email = $("#email").val();
+			var phone = $("#phone").val();
+			
+			$('#addNewModal').modal('hide');
+			$('#msgBox').html('Saving Data <i class="icon-spinner icon-spin"></i>');
+		
+			if(fname == "" || lname == "" || email == "" || phone == ""){
+				var msg = '<div class="alert"><button type="button" class="close" data-dismiss="alert">&times;</button>';
+				msg += 'All fields required, not empty.</div>';
+				$("#msgBox").html(msg);
+			}
+		
+			$.ajax({
+				url: "saverow.php",
+				type: "POST",
+				data: {"fname":fname,"lname":lname,"email":email,"phone":phone},				
+			})
+			.fail(function() { 
+				window.console.log("Could not save");
+			})
+			.always(function(rsp) { 
+				if(rsp == "ok"){
+					$('#msgBox').html('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button>Data saved successfully.</div>');
+					$("#stable").versatileGrid("refreshGrid");
+				}else{
+					$('#msgBox').html('<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">&times;</button>There was an error trying to save data.</div>');
+				}
+			});
+		}
+		
+		function editRow(e){
+			e.preventDefault();
+			e.stopPropagation();
+			
+			$("#noMoHeader").html("Edit Row");
+			$("#noMoRowIds").html("Delete Row Id: " +  e.data.rowId);
+			$("#noModal").modal();
+		}
+		function deleteRow(e){
+			e.preventDefault();
+			e.stopPropagation();
+			
+			$("#noMoHeader").html("Delete Row");
+			$("#noMoRowIds").html("Delete Row Id: " +  e.data.rowId);
+			$("#noModal").modal();
+		}
+	</script>
+  </body>
+</html>

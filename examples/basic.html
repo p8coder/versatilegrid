@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Versatile Grid - Basic</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../assets/css/prettify.css" rel="stylesheet">
+    <link href="../versatileGrid.css" rel="stylesheet">
+  </head>
+  <body>
+  	<div class="container">
+		<h2>Versatile Grid - Basic Usage</h2>
+		<div class="row-fluid ">
+			Below is the default bootstrap style for tables, you can resize your 
+			browser to see the behaviour before and after make it Versatile	
+		</div>
+		<div class="row-fluid ">
+			<br>
+			<p class="text-center">
+			  <button class="btn btn-large btn-success" type="button" id="makeBtn">Make it Versatile</button>
+				<select id="colorSelector" style="display:none">
+				  <option >Change Color Theme</option>
+				  <option value="vg-gray">Default (gray)</option>
+				  <option value="vg-blue">Blue</option>
+				  <option value="vg-green">Green</option>
+				  <option value="vg-orange">Orange</option>
+				  <option value="vg-dark">Dark</option>
+				</select>			  
+			</p>
+			<br>
+		</div>
+		<div class="row-fluid ">
+				<table class="table" id="stable">
+					<thead>
+						<tr >
+							<th >Id</th>
+							<th >First name</th>
+							<th >Last name</th>
+							<th >Phone</th>
+							<th >Username</th>
+						</tr>		
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>		
+							<td>Mark</td>
+							<td>Smith df dsfds sadfsdf dsfsdfsda fsdfsdfsdfsf dfsdf sdfsdf sadffdsfsdf fdfd fsadf fin</td>
+							<td>315-789-8038</td>
+							<td>mSmith</td>
+						</tr>
+						<tr>
+							<td >2</td>		
+							<td>Sean</td>
+							<td>Paterson</td>
+							<td>315-232-1234</td>
+							<td>sPat16</td>
+						</tr>
+						<tr>
+							<td>3</td>		
+							<td>Alan</td>
+							<td>Jhonson</td>
+							<td>315-234-1111</td>
+							<td>aj455</td>						
+						</tr>
+					</tbody>
+				</table>
+				
+				<br>
+				
+	<br><h4>Javascript Code</h4>
+<pre class="prettyprint linenums">
+$(function() {
+	$("#stable").versatileGrid({
+		'title' : 'Contacts',
+		'colswidth' : ['30']
+	});
+});
+</pre>					
+				
+		</div>
+  	</div>
+			
+		
+			
+	<script type="text/javascript" src="../assets/js/jquery-1.10.1.min.js"></script>
+	<script type="text/javascript" src="../versatileGrid.js"></script>
+	<script type="text/javascript" src="../assets/js/prettify.js"></script>		
+	<script >
+		$(function() {
+			$("#makeBtn").on("click", function(e){
+				e.preventDefault();
+				
+				$("#stable").versatileGrid({
+					'title' : 'Contacts',
+					'colswidth' : ['30']
+				});
+
+				$(this).hide();
+				$("#colorSelector").show();
+				
+			});
+			
+			$("#colorSelector").on("change", function(e){
+				e.preventDefault();
+				var rc = "", selected = $(this).val();
+				$("#colorSelector option").each(function(){
+					window.console.log(this.value);
+					rc += this.value != selected ? this.value + " " : "";
+				});
+				$("#stable").parent().addClass(selected).removeClass(rc);
+			});
+			
+			prettyPrint();
+		});	
+	
+	</script>
+  </body>
+</html>

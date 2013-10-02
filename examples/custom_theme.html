@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Versatile Grid - Custome Theme</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/font-awesome.css" rel="stylesheet">
+    <link href="../assets/css/prettify.css" rel="stylesheet">
+    <link href="../versatileGrid.css" rel="stylesheet">
+	<link href="../assets/css/custom_theme.css" rel="stylesheet">
+  </head>
+  <body>
+  	<div class="container">
+		<h2>Versatile Grid - Custome Theme</h2>
+		<div class="row-fluid ">
+			In this grid we are using a custome theme.
+		</div> 
+		<div class="row-fluid "><br></div>		
+		<div class="row-fluid ">
+			<div >
+				<table class="table" id="stable">
+					<thead>
+						<tr >
+							<th >Id</th>
+							<th >First name</th>
+							<th >Last name</th>
+							<th >Email</th>
+							<th >Phone</th>
+						</tr>		
+					</thead>
+					<tbody></tbody>
+				</table>
+
+				<br><h4>Javascript Code</h4>
+<pre class="prettyprint linenums">
+$(function() {
+	$("#stable").versatileGrid({
+		title : 'Contacts',
+		colswidth : ['30'],
+		url : "data.php",
+		theme:'blue',
+		checkbox:true,
+		toolbar : [
+			{type:'button', name:'Activate', icon:'icon-ok', click:activateUsers},
+			{type:'button', name:'Add New', icon:'icon-plus', click:addNew}
+		]		
+	});
+});
+</pre>
+			</div>
+		</div>
+		<div class=""><div class="span12 def-top-margin footer"></div></div>
+  	</div>
+			
+	<script type="text/javascript" src="../assets/js/jquery-1.10.1.min.js"></script>
+	<script type="text/javascript" src="../versatileGrid.js"></script>
+	<script type="text/javascript" src="../assets/js/prettify.js"></script>
+	<script>
+		$(function() {
+			$("#stable").versatileGrid({
+				title : 'Contacts',
+				colswidth : ['30'],
+				url : "data.php",
+				theme:'daylight',
+				checkbox:true,
+				toolbar : [{type:'button', name:'Activate', icon:'icon-ok', click:activateUsers},
+						   {type:'button', name:'Add New', icon:'icon-plus', click:addNew}]				
+			});
+			
+			prettyPrint();
+		});	
+		
+		function activateUsers(){
+			
+			var selectedRow = $("#stable").versatileGrid("getSelectedRows");
+			$("#rowStd").html(selectedRow.length);
+			
+			if(selectedRow.length > 0){
+				var ids = selectedRow[0];
+				$.each(selectedRow, function(index,value) {                    
+					ids += index > 0 ? ", "+value : "";
+				});
+				$("#rowIds").html("Row IDs: " + ids);
+			}else{
+				$("#rowIds").html("");
+			}
+			
+			$("#activeModal").modal();
+		}	
+
+		function addNew(){
+			$("#addNewModal").modal();
+		}		
+	</script>
+  </body>
+</html>
