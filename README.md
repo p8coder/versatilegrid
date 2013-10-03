@@ -11,7 +11,7 @@ Add css files in the header section:
 	<link href="your_css_path/font-awesome.min.css" rel="stylesheet">
 	<link href="your_css_path/versatileGrid.css" rel="stylesheet">
 
-Add js at the bottom closest to </body> tag:
+Add js at the bottom before close body tag:
 
     <script src="your_js_path/jquery-1.10.1.min.js" type="text/javascript" ></script>
     <script src="your_js_path/versatileGrid.js" type="text/javascript" ></script>
