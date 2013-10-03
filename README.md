@@ -60,9 +60,5 @@ If you are going to show static information, you can use the following HTML code
 If you want to apply versatilGrid to multiple grid on the fly, you can set different styles via attributes.	
 
 
-Check out the [Contributing Guidelines](CONTRIBUTING.md)
-
-For Demos and more documentation use the link below:
-
-[Klaus Hartl](http://kodemax.com/projects/versatilegrid/i)
+Check out more [Demos and Documentation](http://kodemax.com/projects/versatilegrid/i)
 
